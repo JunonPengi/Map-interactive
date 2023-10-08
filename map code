@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  
+
+    <title>Map interractive</title>
+</head>
+<body>
+
+    <style>
+      /* dimension de la mapp CSS */
+      #gmp-map {
+        height: 100%;
+      }
+
+      /* la map sur la totalité de la page */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      
+      require('dotenv').config();
+      const apiKey = process.env.API_KEY;
+
+      console.log(process.env)
+
+      // initialisation et coordonnées de Paris et alentours
+      function initMap() {
+        const locations = [
+        {lat: 48.85662841796875, lng: 2.352243423461914}, //Paris
+        {lat: 46.2043907, lng: 6.1431577}, //Genève
+        {lat: -4.0347884999999994, lng: 21.75502799999998}, //Congo (RDC)
+        {lat: 50.633333, lng: 3.066667}, // Lille
+        {lat: 43.700000, lng: 7.250000}, // Nice
+        {lat: 50.499527, lng: 4.475402500000001}, // Belgique
+        {lat: 52.133057, lng: 5.29525000000001}, // Pays-bas
+        {lat: 51.1657065, lng: 10.452764000000002}, // Allemagne
+
+         
+      ];
+        
+        // Coordonnées du centre de la carte
+        const map = new google.maps.Map(document.getElementById("gmp-map"), {
+          zoom: 14,
+          center: 
+          {lat: 48.85662841796875, lng: 2.352243423461914},
+        });
+
+        //boucle pour passer sur le tableau des endroits
+        for (let i = 0; i < locations.length; i++) {
+        const map2 = new google.maps.Marker({
+        position: locations[i],
+         map: map,
+        title: "Marqueur " + (i + 1),
+        });
+        
+      }
+    }
+
+      window.initMap = initMap;
+        
+
+    </script>
+
+    
+  </head>
+  <body>
+    
+    <div id="gmp-map"></div>
+  </body>
+</html>
+  </body>
+
+  </html>
